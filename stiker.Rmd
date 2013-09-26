@@ -1,0 +1,56 @@
+Etude Stiker
+========================================================
+
+```{r data,echo=FALSE}
+file<-"data/raw_data.csv"
+d<-read.csv(file,header=TRUE,sep=",")
+names(d)
+str(d)
+```
+Données de base:
+```{r base,echo=FALSE}
+print(paste("nombre de questionnaires exploitables:",length(d$SAMU)))
+print(paste("nombre de SMUR ayant répondu:",length(unique(d$SMUR))))
+print(paste("correspondants à ",length(unique(d$SAMU))," SAMU."))
+```
+Qualité des personnes ayant répondu:
+```{r fct,echo=FALSE}
+summary(d$Fonction)
+barplot(prop.table(table(d$Fonction))*100,main="Qui a répondu au questionnaire ?",ylab="pourcentage")
+```
+Pour les médecins, il s'agit du chef de service dans 10 cas et le cadre de santé est une IADE dans 6 cas.
+
+Les conducteurs sont titulaires de CCA
+```{r cca, echo=FALSE}
+summary(d$Q1)
+```
+Les ambulanciers ont suivis une FAE ?
+```{r fae,echo=FALSE}
+summary(d$Q2)
+```
+Pourcentage de personnel formés
+```{r pourcentage,echo=FALSE}
+summary(d$pourcent)
+boxplot(d$pourcent,col="yellow")
+```
+Les ambulanciers préparent les médicaments
+------------------------------------------
+```{r med,echo=FALSE}
+summary(d$Q3)
+barplot(summary(d$Q3),main="L'ADE prépare les médicaments injectables",ylab="nombre")
+barplot(prop.table(table(d$Q3))*100,main="L'ADE prépare les médicaments injectables",ylab="pourcentage")
+```
+Les ambulanciers préparent les voies veineuses
+----------------------------------------------
+```{r perf,echo=FALSE}
+barplot(summary(d$Q4),main="L'ADE prépare les voies veineuses (purge)",ylab="nombre")
+barplot(prop.table(table(d$Q4))*100,main="L'ADE prépare les voies veineuses (purge)",ylab="pourcentage")
+```
+Les ambulanciers injectent les médicaments
+------------------------------------------
+```{r inj,echo=FALSE}
+barplot(prop.table(table(d$Q5)),main="L'ADE injecte un médicament",ylab="nombre")
+barplot(prop.table(table(d$Q5))*100,main="L'ADE injecte un médicament",ylab="pourcentage")
+```
+
+
