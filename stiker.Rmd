@@ -31,7 +31,7 @@ summary(d$Q2)
 Pourcentage de personnel formés
 ```{r pourcentage,echo=FALSE}
 summary(d$pourcent)
-boxplot(d$pourcent,col="yellow")
+boxplot(d$pourcent,col="yellow",main="Pourcentage d'ADE formés",ylab="pourcentage")
 ```
 Les ambulanciers préparent les médicaments
 ------------------------------------------
